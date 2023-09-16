@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { CardWrapper } from "../../components/Card";
 import { sportImages } from "../../constants/imageMap";
 
 import ImgWithFallback from "../../components/ImgWithFallback";
 import img from "../../assets/images/athletics.jpg";
+import runningIcon from "../../assets/images/running.svg";
 
 import {
   toStandardTime,
@@ -17,6 +18,16 @@ import { Button } from "../../components/Button";
 import Tooltip from "../../components/Tooltip";
 
 const Events = ({ events, onClick, selectedCategory, selectedEvents }) => {
+  const [areEventsAvailable, setAreEventsAvailable] = useState(false);
+
+  useEffect(() => {
+    if (selectedCategory === "All Categories")
+      setAreEventsAvailable(events?.length > 0);
+    else {
+      setAreEventsAvailable(false);
+    }
+  }, [events, selectedCategory]);
+
   const onClickButton = (idx, eventId, isSelectedEvent, overlapping) => {
     onClick && onClick(idx, eventId, isSelectedEvent, overlapping);
   };
@@ -29,6 +40,8 @@ const Events = ({ events, onClick, selectedCategory, selectedEvents }) => {
           selectedCategory !== event.event_category
         )
           return null;
+
+        if (!areEventsAvailable) setAreEventsAvailable(true);
 
         const overlapping =
           selectedEvents.length === 3 || isOverLapping(selectedEvents, event);
@@ -94,6 +107,19 @@ const Events = ({ events, onClick, selectedCategory, selectedEvents }) => {
           </CardWrapper>
         );
       })}
+      {!areEventsAvailable && (
+        <div
+          className={styles.events_fallback}
+          data-testid="selectedEvents-fallback"
+        >
+          <img
+            src={runningIcon}
+            className={styles.fallback_icon}
+            alt="fallback_icon"
+          />
+          No Events to be displayed
+        </div>
+      )}
     </div>
   );
 };

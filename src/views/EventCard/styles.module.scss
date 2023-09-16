@@ -43,6 +43,19 @@
       }
     }
   }
+  .events_fallback {
+    @include flex-justify-center;
+    flex: 1;
+    flex-direction: column;
+    text-align: center;
+    color: $YELLOW;
+    font-size: 20px;
+    font-weight: 500;
+    .fallback_icon {
+      height: 200px;
+      width: 150px;
+    }
+  }
 }
 
 @media only screen and (max-width: $MediaSm) {
