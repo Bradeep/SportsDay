@@ -27,9 +27,6 @@ const SportsDay = () => {
     const fetchData = async () => {
       const res = await fetch("data.json");
       const resData = await res?.json();
-      for (var i = 0; i < resData?.length; i++) {
-        resData[i].isSelected = false;
-      }
       setData(resData);
     };
 
@@ -49,15 +46,6 @@ const SportsDay = () => {
         return events;
       });
     }
-    setData((prevData) => {
-      const updatedData = [...prevData];
-      updatedData[idx] = {
-        ...updatedData[idx],
-        isSelected: !updatedData[idx]["isSelected"],
-      };
-
-      return updatedData;
-    });
   };
 
   return (

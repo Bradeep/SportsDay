@@ -1,30 +1,8 @@
 @import "../constants/_variables.scss";
 
-.event_wrapper_title {
-  text-align: center;
-  font-size: 24px;
-  font-weight: 600;
-}
-.event_wrapper_1 {
-  display: flex;
-  padding: 20px;
-  height: 90vh;
-  .all_events_wrapper {
-    overflow-y: auto;
-  }
-  .selected_events_wrapper {
-    overflow-y: auto;
-
-    min-width: 350px;
-    padding-left: 20px;
-    border-left: 1px solid $GREY_1;
-  }
-}
-
 .app_container {
   background-color: $BLACK;
   min-height: 100vh;
-  z-index: 1;
   .app_title_bar {
     @include flex-justify-center;
     position: sticky;
