@@ -8,12 +8,6 @@
   box-sizing: border-box;
 }
 
-.cardWrapper-custom-storybook__container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 @media only screen and (max-width: $MediaXs) {
   .cardWrapper__container {
     width: 240px;

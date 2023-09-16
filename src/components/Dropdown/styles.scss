@@ -7,12 +7,10 @@
   position: relative;
   max-height: 30px;
   cursor: pointer;
-  background-color: #ffc63d;
+  background-color: $YELLOW;
   min-width: 120px;
   .dropdown__selectedLabelContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flex-justify-between;
     width: 100%;
     .dropdown__selectedLabel {
       font-size: 12px;
@@ -25,7 +23,7 @@
   .dropdown__dropdownSheet {
     background-color: $WHITE;
     min-width: 150px;
-    border: 1px solid $GREY_6;
+    border: 1px solid $GREY_3;
     border-radius: 10px;
     position: absolute;
     z-index: $ZINDEX_10;
@@ -36,13 +34,11 @@
     top: 40px;
     right: -20px;
     .dropdown__singleOption {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      @include flex-justify-between;
       .dropdown__dropdownOption {
         padding: 10px 0px;
         text-transform: capitalize;
-        color: $GREY_7;
+        color: $GREY_4;
         font-size: 12px;
         line-height: 18px;
         cursor: pointer;
