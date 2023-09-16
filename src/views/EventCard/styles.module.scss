@@ -6,42 +6,51 @@
   gap: 24px;
   flex-wrap: wrap;
   padding: 64px;
-  .cardWrapper {
-    min-width: auto;
-    .eventCard_wrapper {
-      .eventCard_title {
-        background-color: $YELLOW;
-        padding: 20px 30px;
-        font-size: 24px;
-        font-weight: 700;
-        text-align: center;
-      }
-      .event_descriptions {
-        margin: 24px 30px;
-        .event_date_wrapper,
-        .event_time_wrapper {
-          margin-bottom: 5px;
-          font-size: 18px;
-          font-weight: 500;
-          .event_date,
-          .event_time {
-            font-size: 14px;
-            font-weight: 400;
-          }
+  overflow: auto;
+  scroll-behavior: auto;
+  .cardWrapper_container {
+    .cardWrapper {
+      min-width: auto;
+
+      .eventCard_wrapper {
+        .eventCard_title {
+          background-color: $YELLOW;
+          border-radius: 4px;
+          padding: 20px 30px;
+          font-size: 24px;
+          font-weight: 700;
+          text-align: center;
         }
-        .select_button {
-          position: relative;
-          .tooltip {
-            display: none;
+        .event_descriptions {
+          padding: 24px 30px;
+          .event_date_wrapper,
+          .event_time_wrapper {
+            margin-bottom: 5px;
+            font-size: 18px;
+            font-weight: 500;
+            .event_date,
+            .event_time {
+              font-size: 14px;
+              font-weight: 400;
+            }
           }
-          &:hover {
+          .select_button {
+            position: relative;
             .tooltip {
-              display: block;
+              display: none;
+            }
+            &:hover {
+              .tooltip {
+                display: block;
+              }
             }
           }
         }
       }
     }
+  }
+  .animate {
+    animation: drop-out 1250ms both;
   }
   .events_fallback {
     @include flex-justify-center;
@@ -51,6 +60,7 @@
     color: $YELLOW;
     font-size: 20px;
     font-weight: 500;
+    animation: drop-out 2250ms;
     .fallback_icon {
       height: 200px;
       width: 150px;
@@ -62,33 +72,35 @@
   .eventCard_container {
     padding: 32px 16px;
     gap: 15px;
-    .cardWrapper {
-      width: fit-content;
+    .cardWrapper_container {
+      .cardWrapper {
+        width: fit-content;
 
-      .eventCard_wrapper {
-        .eventCard_title {
-          padding: 10px 14px;
-          font-size: 16px;
-          font-weight: 600;
-        }
-        .event_image {
-          height: 120px;
-          width: 185px;
-        }
-        .event_descriptions {
-          margin: 12px 15px;
-          .event_date_wrapper,
-          .event_time_wrapper {
-            margin-bottom: 4px;
-            font-size: 14px;
-            .event_date,
-            .event_time {
-              font-size: 12px;
-            }
+        .eventCard_wrapper {
+          .eventCard_title {
+            padding: 10px 14px;
+            font-size: 16px;
+            font-weight: 600;
           }
-          .select_button {
-            padding: 6px 10px;
-            font-size: 14px;
+          .event_image {
+            height: 120px;
+            width: 185px;
+          }
+          .event_descriptions {
+            padding: 12px 15px;
+            .event_date_wrapper,
+            .event_time_wrapper {
+              margin-bottom: 4px;
+              font-size: 14px;
+              .event_date,
+              .event_time {
+                font-size: 12px;
+              }
+            }
+            .select_button {
+              padding: 6px 10px;
+              font-size: 14px;
+            }
           }
         }
       }
@@ -99,5 +111,25 @@
 @media #{$MediaScreenXs} {
   .eventCard_container {
     padding: 64px 32px;
+  }
+}
+
+@keyframes drop-out {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+
+    // transform-origin: center center;
+    // transform: translate3d(0, 0, 0) scale3d(0.3, 0.3, 0.3)
+    //   rotate3d(0, 0, 1, 0deg);
+    // opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+
+    // transform-origin: center center;
+    // transform: translate3d(0, 0, 0);
+    // opacity: 1;
   }
 }

@@ -19,8 +19,10 @@ import Tooltip from "../../components/Tooltip";
 
 const Events = ({ events, onClick, selectedCategory, selectedEvents }) => {
   const [areEventsAvailable, setAreEventsAvailable] = useState(false);
+  const [doAnimation, setDoAnimation] = useState(0);
 
   useEffect(() => {
+    setDoAnimation(1);
     if (selectedCategory === "All Categories")
       setAreEventsAvailable(events?.length > 0);
     else {
@@ -49,62 +51,69 @@ const Events = ({ events, onClick, selectedCategory, selectedEvents }) => {
         const isSelectedEvent = selectedEvents.some((el) => el.id === event.id);
 
         return (
-          <CardWrapper
-            backgroundColor={"white"}
-            borderRadius={0}
-            customClass={styles.cardWrapper}
-            key={`events_${event.id}`}
+          <div
+            className={`${styles.cardWrapper_container} ${
+              doAnimation ? styles.animate : ""
+            }`}
+            onAnimationEnd={() => setDoAnimation(0)}
           >
-            <div
-              className={styles.eventCard_wrapper}
-              data-testid={`events_${event.id}`}
+            <CardWrapper
+              backgroundColor={"white"}
+              borderRadius={4}
+              customClass={styles.cardWrapper}
+              key={`events_${event.id}`}
             >
-              <div className={styles.eventCard_title}>{event.event_name}</div>
-              <ImgWithFallback
-                className={styles.event_image}
-                height={230}
-                width={298}
-                src={sportImages[event.event_category.toLowerCase()] || ""}
-                fallbackSrc={img}
-              />
-              <div className={styles.event_descriptions}>
-                <div className={styles.event_date_wrapper}>
-                  <span>Date:</span>
-                  <span className={styles.event_date}>
-                    {" "}
-                    {formattedDate(event.start_time)}
-                  </span>
+              <div
+                className={styles.eventCard_wrapper}
+                data-testid={`events_${event.id}`}
+              >
+                <div className={styles.eventCard_title}>{event.event_name}</div>
+                <ImgWithFallback
+                  className={styles.event_image}
+                  height={230}
+                  width={298}
+                  src={sportImages[event.event_category.toLowerCase()] || ""}
+                  fallbackSrc={img}
+                />
+                <div className={styles.event_descriptions}>
+                  <div className={styles.event_date_wrapper}>
+                    <span>Date:</span>
+                    <span className={styles.event_date}>
+                      {" "}
+                      {formattedDate(event.start_time)}
+                    </span>
+                  </div>
+                  <div className={styles.event_time_wrapper}>
+                    <span>Time: </span>
+                    <span className={styles.event_time}>
+                      {" "}
+                      {toStandardTime(event.start_time)} -{" "}
+                      {toStandardTime(event.end_time)}
+                    </span>
+                  </div>
+                  <Button
+                    buttonColor="#ffc63d"
+                    onClick={() =>
+                      onClickButton(idx, event.id, isSelectedEvent, overlapping)
+                    }
+                    disabled={overlapping && !isSelectedEvent}
+                    customClass={styles.select_button}
+                  >
+                    {isSelectedEvent ? "UNSELECT" : "SELECT"}
+                    {overlapping && !isSelectedEvent && (
+                      <div className={styles.tooltip}>
+                        <Tooltip>
+                          {selectedEvents.length === 3
+                            ? "Can select only upto 3 events"
+                            : "Another event has been chosen on this timeslot"}
+                        </Tooltip>
+                      </div>
+                    )}
+                  </Button>
                 </div>
-                <div className={styles.event_time_wrapper}>
-                  <span>Time: </span>
-                  <span className={styles.event_time}>
-                    {" "}
-                    {toStandardTime(event.start_time)} -{" "}
-                    {toStandardTime(event.end_time)}
-                  </span>
-                </div>
-                <Button
-                  buttonColor="#ffc63d"
-                  onClick={() =>
-                    onClickButton(idx, event.id, isSelectedEvent, overlapping)
-                  }
-                  disabled={overlapping && !isSelectedEvent}
-                  customClass={styles.select_button}
-                >
-                  {isSelectedEvent ? "UNSELECT" : "SELECT"}
-                  {overlapping && !isSelectedEvent && (
-                    <div className={styles.tooltip}>
-                      <Tooltip>
-                        {selectedEvents.length === 3
-                          ? "Can select only upto 3 events"
-                          : "Another event has been chosen on this timeslot"}
-                      </Tooltip>
-                    </div>
-                  )}
-                </Button>
               </div>
-            </div>
-          </CardWrapper>
+            </CardWrapper>
+          </div>
         );
       })}
       {!areEventsAvailable && (

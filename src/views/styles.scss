@@ -14,10 +14,12 @@
     box-shadow: 0px 5px 15px #afafaf;
     z-index: 1;
     .app_title {
+      animation: drop-out 800ms ease-out;
       flex: 1;
     }
     .app_title_CTA {
       display: flex;
+      animation: drop-out 800ms ease-out;
 
       .app_title_icon_wrapper {
         position: relative;
@@ -42,6 +44,18 @@
 .drawer_customClass {
   .drawer_content {
     background-color: $BLACK;
+  }
+}
+
+@keyframes drop-out {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
   }
 }
 
