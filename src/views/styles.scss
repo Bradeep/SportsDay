@@ -1,0 +1,99 @@
+@import "../constants/_variables.scss";
+
+.event_wrapper_title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+}
+.event_wrapper_1 {
+  display: flex;
+  padding: 20px;
+  height: 90vh;
+  .all_events_wrapper {
+    overflow-y: auto;
+  }
+  .selected_events_wrapper {
+    overflow-y: auto;
+
+    min-width: 350px;
+    padding-left: 20px;
+    border-left: 1px solid $GREY_1;
+  }
+}
+
+.app_container {
+  background-color: $BLACK;
+  min-height: 100vh;
+  z-index: 1;
+  .app_title_bar {
+    @include flex-justify-center;
+    position: sticky;
+    top: 0;
+    background-color: $WHITE;
+    padding: 40px 80px;
+    font-size: 24px;
+    font-weight: 700;
+    box-shadow: 0px 5px 15px #afafaf;
+    z-index: 1;
+    .app_title {
+      flex: 1;
+    }
+    .app_title_CTA {
+      display: flex;
+
+      .app_title_icon_wrapper {
+        position: relative;
+        cursor: pointer;
+        margin-left: 35px;
+        .icon_notification {
+          @include flex-justify-center;
+          position: absolute;
+          top: -12px;
+          right: -12px;
+          background-color: $YELLOW;
+          color: $BLACK;
+          border-radius: 50%;
+          font-size: 10px;
+          height: 18px;
+          width: 18px;
+        }
+      }
+    }
+  }
+}
+.drawer_customClass {
+  .drawer_content {
+    background-color: $BLACK;
+  }
+}
+
+@media only screen and (max-width: $MediaSm) {
+  .app_container {
+    .app_title_bar {
+      flex-direction: column;
+      padding: 30px 60px;
+      font-size: 18px;
+      gap: 10px;
+      padding: 25px 35px;
+      .app_title {
+        text-align: center;
+      }
+      .app_title_CTA {
+        width: -webkit-fill-available;
+        align-items: center;
+        justify-content: space-between;
+        .app_title_icon_wrapper {
+          .app_title_icon {
+            height: 24px;
+            width: 24px;
+          }
+          .icon_notification {
+            font-size: 8px;
+            height: 14px;
+            width: 14px;
+          }
+        }
+      }
+    }
+  }
+}
