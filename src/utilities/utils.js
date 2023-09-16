@@ -34,6 +34,11 @@ export const isOverLapping = (selectedEvents, currEvent) => {
       new Date(currEvent.end_time) <= new Date(event.end_time)
     )
       return true;
+    else if (
+      new Date(currEvent.start_time) <= new Date(event.start_time) &&
+      new Date(currEvent.end_time) >= new Date(event.end_time)
+    )
+      return true;
 
     return false;
   });
