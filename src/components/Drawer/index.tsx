@@ -1,13 +1,33 @@
-import React, { useEffect, useRef, useCallback } from "react";
+import React, {
+  useEffect,
+  useRef,
+  useCallback,
+  PropsWithChildren,
+} from "react";
 import styles from "./styles.module.scss";
 
-const Drawer = ({ open, classnames = "", children, onClose }) => {
-  const drawerRef = useRef(null);
+interface DrawerProps {
+  open?: boolean;
+  classnames?: string;
+  onClose?: () => void;
+}
+
+const Drawer = ({
+  open,
+  classnames = "",
+  children,
+  onClose,
+}: PropsWithChildren<DrawerProps>) => {
+  const drawerRef = useRef<HTMLDivElement>(null);
 
   const handleOutsideClick = useCallback(
-    (event) => {
-      if (drawerRef.current && !drawerRef.current.contains(event.target)) {
-        onClose();
+    (event: MouseEvent) => {
+      if (
+        event.target instanceof HTMLDivElement &&
+        drawerRef.current &&
+        !drawerRef.current.contains(event.target)
+      ) {
+        onClose && onClose();
       }
     },
     [onClose]

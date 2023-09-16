@@ -1,5 +1,13 @@
 import styles from "./styles.module.scss";
-import React from "react";
+import React, { PropsWithChildren } from "react";
+
+interface CardProps {
+  customClass?: string;
+  width?: string;
+  height?: string;
+  borderRadius?: number | string;
+  backgroundColor?: string;
+}
 
 export const CardWrapper = ({
   customClass,
@@ -8,7 +16,7 @@ export const CardWrapper = ({
   borderRadius,
   children,
   backgroundColor,
-}) => {
+}: PropsWithChildren<CardProps>) => {
   return (
     <div
       className={`${styles.cardWrapper__container} ${

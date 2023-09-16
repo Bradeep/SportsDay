@@ -2,14 +2,25 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 
 import "./styles.scss";
 
-export default function Dropdown({ dataPoints = [], onItemSelect, className }) {
-  const optionsSheetRef = useRef(null);
+interface DropdownProps {
+  dataPoints: Array<string>;
+  onItemSelect?: ({ selectedValue }: { selectedValue: string }) => void;
+  className?: string;
+}
 
-  const [selectedValue, setSelectedValue] = useState("");
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+export default function Dropdown({
+  dataPoints = [],
+  onItemSelect,
+  className,
+}: DropdownProps) {
+  const optionsSheetRef = useRef<HTMLDivElement>(null);
 
-  const handleOutsideClick = (event) => {
+  const [selectedValue, setSelectedValue] = useState<string>("");
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+
+  const handleOutsideClick = (event: MouseEvent) => {
     if (
+      event.target instanceof HTMLDivElement &&
       optionsSheetRef.current &&
       !optionsSheetRef.current.contains(event.target)
     ) {
@@ -25,43 +36,43 @@ export default function Dropdown({ dataPoints = [], onItemSelect, className }) {
   }, [optionsSheetRef]);
 
   const getValueFromData = useCallback(
-    ({ index }) => {
+    (index: number) => {
       let value = dataPoints?.[index];
       return value;
     },
     [dataPoints]
   );
 
-  const getIsValueSelected = ({ index }) => {
+  const getIsValueSelected = (index: number) => {
     let isSelected = false;
-    const value = getValueFromData({ index });
+    const value = getValueFromData(index);
     if (selectedValue === value) {
       isSelected = true;
     }
     return isSelected;
   };
 
-  const handleSelectValue = ({ index }) => {
-    let newValue = getValueFromData({ index });
+  const handleSelectValue = (index: number) => {
+    let newValue = getValueFromData(index);
 
     setSelectedValue(newValue);
     onItemSelect && onItemSelect({ selectedValue: newValue });
   };
 
   useEffect(() => {
-    setSelectedValue(getValueFromData({ index: 0 }));
+    setSelectedValue(getValueFromData(0));
   }, [getValueFromData]);
 
-  const RenderSingleOption = ({ index }) => {
-    const isValueSelected = getIsValueSelected({ index });
+  const RenderSingleOption = ({ index }: { index: number }) => {
+    const isValueSelected = getIsValueSelected(index);
     return (
       <div
-        onClick={() => handleSelectValue({ index })}
+        onClick={() => handleSelectValue(index)}
         className={`dropdown__singleOption`}
         data-testid={"dropdown__singleOption"}
       >
         <div key={`item-${index}`} className={"dropdown__dropdownOption"}>
-          {getValueFromData({ index })}
+          {getValueFromData(index)}
         </div>
         {isValueSelected ? (
           <svg

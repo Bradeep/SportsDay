@@ -1,7 +1,7 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import styles from "./styles.module.scss";
 
-const Tooltip = ({ children }) => {
+const Tooltip = ({ children }: PropsWithChildren) => {
   return (
     <div className={`${styles.tooltipWrapper}`}>
       {children}

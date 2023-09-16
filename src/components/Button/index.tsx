@@ -1,5 +1,13 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import styles from "./styles.module.scss";
+
+interface ButtonProps {
+  textColor?: string;
+  buttonColor?: string;
+  customClass?: string;
+  onClick?: () => void;
+  disabled?: boolean;
+}
 
 export const Button = ({
   textColor = "",
@@ -8,7 +16,7 @@ export const Button = ({
   onClick,
   disabled = false,
   children,
-}) => {
+}: PropsWithChildren<ButtonProps>) => {
   const onButtonClick = () => {
     !disabled && onClick && onClick();
   };

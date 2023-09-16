@@ -1,8 +1,12 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, Fragment, HTMLProps } from "react";
 
-const ImgWithFallback = (props) => {
+interface PropsInterface extends HTMLProps<HTMLImageElement> {
+  fallbackSrc: string | undefined;
+}
+
+const ImgWithFallback = (props: PropsInterface) => {
   const { src, fallbackSrc, ...rest } = props;
-  const [imgSrc, setImgSrc] = useState(src);
+  const [imgSrc, setImgSrc] = useState<string | undefined>(src);
 
   useEffect(() => {
     setImgSrc(src);
