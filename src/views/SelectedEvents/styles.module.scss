@@ -1,0 +1,67 @@
+@import "../../constants/_variables.scss";
+
+.selectedEvents_container {
+  background-color: $BLACK;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  box-sizing: border-box;
+  .selectedEvents_title {
+    color: $YELLOW;
+    font-size: 24px;
+    font-weight: 600;
+  }
+  .selectedEvents_cardWrapper {
+    position: relative;
+    background-color: $YELLOW;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 15px 0px;
+    .selectedEvents_remove {
+      @include flex-justify-center;
+      cursor: pointer;
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      background-color: $YELLOW;
+      border: 1px solid $BLACK;
+      font-size: 8px;
+    }
+    .selectedEvents_icon {
+      margin-right: 10px;
+    }
+    .selectedEvents_description {
+      border-left: 1px solid $BLACK;
+      padding-left: 10px;
+      display: flex;
+      flex-direction: column;
+      font-size: 12px;
+      line-height: 16px;
+      .selectedEvents_name {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 18px;
+      }
+    }
+  }
+  .selectedEvents_fallback {
+    @include flex-justify-center;
+    flex: 1;
+    flex-direction: column;
+    text-align: center;
+    color: $YELLOW;
+    font-size: 20px;
+    font-weight: 500;
+    .fallback_icon {
+      height: 200px;
+      width: 150px;
+    }
+  }
+}
