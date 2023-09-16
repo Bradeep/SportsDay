@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { CardWrapper } from "../../components/Card";
-import { sportImages } from "../../constants/imageMap";
 
-import ImgWithFallback from "../../components/ImgWithFallback";
+import { CardWrapper } from "../../components/Card/index";
+import ImgWithFallback from "../../components/ImgWithFallback/index";
+import { Button } from "../../components/Button/index";
+import Tooltip from "../../components/Tooltip/index";
+
 import img from "../../assets/images/athletics.jpg";
 import runningIcon from "../../assets/images/running.svg";
+
+import { sportImages } from "../../constants/imageMap";
 
 import {
   toStandardTime,
@@ -12,17 +16,33 @@ import {
   formattedDate,
 } from "../../utilities/utils";
 
+import { EventsInterface } from "views";
+
 import styles from "./styles.module.scss";
 
-import { Button } from "../../components/Button";
-import Tooltip from "../../components/Tooltip";
+interface IProps {
+  events: Array<EventsInterface>;
+  selectedCategory: string;
+  selectedEvents: Array<EventsInterface>;
+  onClick: (
+    idx: number,
+    id: number,
+    isSelectedEvent: boolean,
+    overlapping: boolean
+  ) => void;
+}
 
-const Events = ({ events, onClick, selectedCategory, selectedEvents }) => {
-  const [areEventsAvailable, setAreEventsAvailable] = useState(false);
-  const [doAnimation, setDoAnimation] = useState(0);
+const Events = ({
+  events,
+  onClick,
+  selectedCategory,
+  selectedEvents,
+}: IProps) => {
+  const [areEventsAvailable, setAreEventsAvailable] = useState<boolean>(false);
+  const [doAnimation, setDoAnimation] = useState<boolean>(false);
 
   useEffect(() => {
-    setDoAnimation(1);
+    setDoAnimation(true);
     if (selectedCategory === "All Categories")
       setAreEventsAvailable(events?.length > 0);
     else {
@@ -30,7 +50,12 @@ const Events = ({ events, onClick, selectedCategory, selectedEvents }) => {
     }
   }, [events, selectedCategory]);
 
-  const onClickButton = (idx, eventId, isSelectedEvent, overlapping) => {
+  const onClickButton = (
+    idx: number,
+    eventId: number,
+    isSelectedEvent: boolean,
+    overlapping: boolean
+  ) => {
     onClick && onClick(idx, eventId, isSelectedEvent, overlapping);
   };
 
@@ -55,13 +80,13 @@ const Events = ({ events, onClick, selectedCategory, selectedEvents }) => {
             className={`${styles.cardWrapper_container} ${
               doAnimation ? styles.animate : ""
             }`}
-            onAnimationEnd={() => setDoAnimation(0)}
+            onAnimationEnd={() => setDoAnimation(false)}
+            key={`events_${event.id}`}
           >
             <CardWrapper
               backgroundColor={"white"}
               borderRadius={4}
               customClass={styles.cardWrapper}
-              key={`events_${event.id}`}
             >
               <div
                 className={styles.eventCard_wrapper}

@@ -1,14 +1,23 @@
 import React from "react";
 
+import ImgWithFallback from "../../components/ImgWithFallback/index";
+
+import fallbackIcon from "../../assets/icons/athletics.svg";
+import runningIcon from "../../assets/images/running.svg";
+
 import { formattedDate, toStandardTime } from "../../utilities/utils";
 import { sportIcons } from "../../constants/imageMap";
-import fallbackIcon from "../../assets/icons/athletics.svg";
 
-import runningIcon from "../../assets/images/running.svg";
-import ImgWithFallback from "../../components/ImgWithFallback";
+import { EventsInterface } from "views";
+
 import styles from "./styles.module.scss";
 
-const SelectedEvents = ({ selectedEvents, onClickRemove }) => {
+interface IProps {
+  selectedEvents: Array<EventsInterface>;
+  onClickRemove: (idx: number, id: number, isSelectedEvent: boolean) => void;
+}
+
+const SelectedEvents = ({ selectedEvents, onClickRemove }: IProps) => {
   return (
     <div className={styles.selectedEvents_container}>
       {selectedEvents.length > 0 ? (
@@ -36,7 +45,7 @@ const SelectedEvents = ({ selectedEvents, onClickRemove }) => {
                     height={20}
                     width={20}
                     src={sportIcons[event.event_category.toLowerCase()] || ""}
-                    fallbackSrc={fallbackIcon}
+                    fallbackSrc={fallbackIcon as string}
                   />
 
                   <div className={styles.selectedEvents_description}>

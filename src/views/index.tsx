@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
+
+import SelectedEvents from "./SelectedEvents";
 import Events from "./EventCard";
 
-import icon from "../assets/icons/athletics.svg";
+import Dropdown from "../components/Dropdown";
 import Drawer from "../components/Drawer";
 
+import icon from "../assets/icons/athletics.svg";
+
 import "./styles.scss";
-import SelectedEvents from "./SelectedEvents";
-import Dropdown from "../components/Dropdown";
 
 const EVENT_CATEGORY = [
   "All Categories",
@@ -17,11 +19,22 @@ const EVENT_CATEGORY = [
   "Football",
 ];
 
+export interface EventsInterface {
+  id: number;
+  event_name: string;
+  event_category: string;
+  start_time: string;
+  end_time: string;
+}
+
 const SportsDay = () => {
-  const [data, setData] = useState([]);
-  const [selectedEvents, setSelectedEvents] = useState([]);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("All Categories");
+  const [data, setData] = useState<Array<EventsInterface>>([]);
+  const [selectedEvents, setSelectedEvents] = useState<Array<EventsInterface>>(
+    []
+  );
+  const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
+  const [selectedCategory, setSelectedCategory] =
+    useState<string>("All Categories");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,7 +46,7 @@ const SportsDay = () => {
     fetchData();
   }, []);
 
-  const onClick = (idx, id, isSelectedEvent, isOverLapping) => {
+  const onClick = (idx: number, id: number, isSelectedEvent: boolean) => {
     if (!isSelectedEvent) {
       setSelectedEvents((prev) => {
         const events = [...prev];
@@ -42,7 +55,7 @@ const SportsDay = () => {
       });
     } else {
       setSelectedEvents((prev) => {
-        const events = prev.filter((el) => el.id !== id);
+        const events = prev.filter((el: EventsInterface) => el.id !== id);
         return events;
       });
     }
