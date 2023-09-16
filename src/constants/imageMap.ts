@@ -1,4 +1,4 @@
-export const sportImages = {
+export const sportImages: { [key: string]: string } = {
   athletics: require("../assets/images/athletics.jpg"),
   cricket: require("../assets/images/cricket.jpeg"),
   football: require("../assets/images/football.jpeg"),
@@ -6,7 +6,7 @@ export const sportImages = {
   swimming: require("../assets/images/swimming.jpeg"),
 };
 
-export const sportIcons = {
+export const sportIcons: { [key: string]: string } = {
   athletics: require("../assets/icons/athletics.svg").default,
   cricket: require("../assets/icons/cricket.svg").default,
   football: require("../assets/icons/football.svg").default,

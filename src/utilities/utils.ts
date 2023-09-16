@@ -1,4 +1,4 @@
-export const toStandardTime = (dateTime) => {
+export const toStandardTime = (dateTime: string) => {
   const date = new Date(dateTime);
 
   return date.toLocaleString("en-US", {
@@ -8,21 +8,32 @@ export const toStandardTime = (dateTime) => {
   });
 };
 
-export const formattedDate = (dateTime) => {
+export const formattedDate = (dateTime: string) => {
   const today = new Date(dateTime);
   const yyyy = today.getFullYear();
-  let mm = today.getMonth() + 1;
-  let dd = today.getDate();
+  let mm = today.getMonth() + 1 + "";
+  let dd = today.getDate() + "";
 
-  if (dd < 10) dd = "0" + dd;
-  if (mm < 10) mm = "0" + mm;
+  if (today.getDate() < 10) dd = "0" + dd;
+  if (today.getMonth() + 1 < 10) mm = "0" + mm;
 
   const formattedDate = dd + "/" + mm + "/" + yyyy;
 
   return formattedDate;
 };
 
-export const isOverLapping = (selectedEvents, currEvent) => {
+interface EventsInterface {
+  id: number;
+  event_name: string;
+  event_category: string;
+  start_time: string;
+  end_time: string;
+}
+
+export const isOverLapping = (
+  selectedEvents: Array<EventsInterface>,
+  currEvent: EventsInterface
+) => {
   var overlapping = selectedEvents.some((event) => {
     if (
       new Date(currEvent.start_time) >= new Date(event.start_time) &&
