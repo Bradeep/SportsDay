@@ -1,0 +1,25 @@
+@import "../../constants/_variables.scss";
+
+.button__container {
+  border-radius: 10px;
+  align-items: center;
+  display: inline-flex;
+  cursor: pointer;
+  border-style: unset;
+  transition: opacity 0.1s ease;
+  padding: 8px 12px;
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.button__container:active {
+  opacity: 0.6;
+}
+
+.button__disable {
+  color: $BLACK_4;
+  box-shadow: none;
+  background-color: $BLACK_3;
+  cursor: not-allowed;
+}

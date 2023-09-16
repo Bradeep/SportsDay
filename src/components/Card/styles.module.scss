@@ -1,0 +1,21 @@
+@import "../../constants/_variables.scss";
+
+.cardWrapper__container {
+  min-width: 350px;
+  min-height: 50px;
+  background-color: $WHITE;
+  border-radius: 16px;
+  box-sizing: border-box;
+}
+
+.cardWrapper-custom-storybook__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (max-width: $MediaXs) {
+  .cardWrapper__container {
+    width: 240px;
+  }
+}
