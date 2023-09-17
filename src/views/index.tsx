@@ -6,6 +6,7 @@ import Events from "./EventCard";
 import Dropdown from "../components/Dropdown";
 import Drawer from "../components/Drawer";
 
+import { filterSelectedCategoryEvents } from "./helper";
 import icon from "../assets/icons/athletics.svg";
 
 import "./styles.scss";
@@ -28,7 +29,10 @@ export interface EventsInterface {
 }
 
 const SportsDay = () => {
-  const [data, setData] = useState<Array<EventsInterface>>([]);
+  const [events, setEvents] = useState<Array<EventsInterface>>([]);
+  const [selectedCategoryEvents, setSelectedCategoryEvents] = useState<
+    Array<EventsInterface>
+  >([]);
   const [selectedEvents, setSelectedEvents] = useState<Array<EventsInterface>>(
     []
   );
@@ -41,7 +45,8 @@ const SportsDay = () => {
       try {
         const res = await fetch("data.json");
         const resData = await res?.json();
-        setData(resData);
+        setEvents(resData);
+        setSelectedCategoryEvents(resData);
       } catch (e) {
         console.log("Api failure");
       }
@@ -50,17 +55,23 @@ const SportsDay = () => {
     fetchData();
   }, []);
 
+  const onCategoryChange = (selectedValue: string) => {
+    setSelectedCategory(selectedValue);
+    const categoryEvents = filterSelectedCategoryEvents(events, selectedValue);
+    setSelectedCategoryEvents(categoryEvents);
+  };
+
   const onClick = (idx: number, id: number, isSelectedEvent: boolean) => {
     if (!isSelectedEvent) {
       setSelectedEvents((prev) => {
-        const events = [...prev];
-        events.push(data[idx]);
-        return events;
+        const selected = [...prev];
+        selected.push(selectedCategoryEvents[idx]);
+        return selected;
       });
     } else {
       setSelectedEvents((prev) => {
-        const events = prev.filter((el: EventsInterface) => el.id !== id);
-        return events;
+        const selected = prev.filter((el: EventsInterface) => el.id !== id);
+        return selected;
       });
     }
   };
@@ -74,7 +85,7 @@ const SportsDay = () => {
             <Dropdown
               dataPoints={EVENT_CATEGORY}
               onItemSelect={(data) => {
-                setSelectedCategory(data.selectedValue);
+                onCategoryChange(data.selectedValue);
               }}
             />
 
@@ -100,7 +111,7 @@ const SportsDay = () => {
         </div>
         <div>
           <Events
-            events={data}
+            events={selectedCategoryEvents}
             selectedEvents={selectedEvents}
             onClick={onClick}
             selectedCategory={selectedCategory}

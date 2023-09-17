@@ -94,17 +94,6 @@ describe("Events card Wrapper", () => {
     expect(event).toBeInTheDocument();
   });
 
-  test("Only selected category rendered", () => {
-    render(<MockEvents selectedCategory="Athletics" />);
-    let event = screen.queryByText("Triple Jump");
-    expect(event).toBeInTheDocument();
-  });
-  test("Non selected category should not be rendered", () => {
-    render(<MockEvents selectedCategory="Athletics" />);
-    let event = screen.queryByText("Freestyle 400M");
-    expect(event).not.toBeInTheDocument();
-  });
-
   describe("Selected events", () => {
     test("Button should have Unselect text", () => {
       render(<MockEvents />);

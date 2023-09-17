@@ -52,19 +52,29 @@
   .animate {
     animation: drop-out 1250ms both;
   }
-  .events_fallback {
-    @include flex-justify-center;
-    flex: 1;
-    flex-direction: column;
-    text-align: center;
-    color: $YELLOW;
-    font-size: 20px;
+}
+.eventsCard_footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 30px 45px 10px;
+  gap: 15px;
+  .footer_button {
     font-weight: 500;
-    animation: drop-out 2250ms;
-    .fallback_icon {
-      height: 200px;
-      width: 150px;
-    }
+  }
+}
+.events_fallback {
+  @include flex-justify-center;
+  flex: 1;
+  flex-direction: column;
+  text-align: center;
+  color: $YELLOW;
+  font-size: 20px;
+  font-weight: 500;
+  animation: drop-out 2250ms;
+  .fallback_icon {
+    height: 200px;
+    width: 150px;
   }
 }
 
@@ -111,6 +121,12 @@
 @media #{$MediaScreenXs} {
   .eventCard_container {
     padding: 64px 32px;
+  }
+}
+
+@media #{$MediaScreenXxs} {
+  .eventsCard_footer {
+    justify-content: center;
   }
 }
 
