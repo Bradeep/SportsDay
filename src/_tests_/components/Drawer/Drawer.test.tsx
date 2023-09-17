@@ -1,10 +1,15 @@
+import React from "react";
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
-import Drawer from "../../../components/Drawer";
+import Drawer from "../../../components/Drawer/index";
+
+interface IProps {
+  open: boolean;
+}
 
 const mockButtonClick = jest.fn();
 
-const MockDrawer = (props) => {
+const MockDrawer = (props: IProps) => {
   return (
     <Drawer onClose={mockButtonClick} {...props}>
       label text

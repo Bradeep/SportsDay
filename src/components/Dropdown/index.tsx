@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./styles.scss";
 
 interface DropdownProps {
-  dataPoints: Array<string>;
+  dataPoints?: Array<string>;
   onItemSelect?: ({ selectedValue }: { selectedValue: string }) => void;
   className?: string;
 }

@@ -1,17 +1,17 @@
+import React from "react";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import ImgWithFallback from "../../../components/ImgWithFallback";
 import icon from "../../../assets/icons/athletics.svg";
 import fallbackIcon from "../../../assets/images/athletics.jpg";
 
-const MockImgWithFallback = (props) => {
+const MockImgWithFallback = () => {
   return (
     <ImgWithFallback
       height={20}
       width={20}
       src={icon || ""}
       fallbackSrc={fallbackIcon}
-      {...props}
     />
   );
 };

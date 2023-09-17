@@ -1,12 +1,16 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import Dropdown from "../../../components/Dropdown";
+import Dropdown from "../../../components/Dropdown/index";
+
+interface IProps {
+  onItemSelect?: () => void;
+}
 
 const mockOnItemSelect = jest.fn();
 
 const mockOnClickOutside = jest.fn();
 
-const MockDropdown = (props) => {
+const MockDropdown = (props: IProps) => {
   return (
     <Dropdown
       onItemSelect={mockOnItemSelect}
@@ -52,7 +56,7 @@ describe("Dropdown Wrapper", () => {
     const dropdownSelectedElement = screen.getByTestId("dropdown-wrapper");
     fireEvent.click(dropdownSelectedElement);
     const containerElement = screen.queryByText("Swimming");
-    fireEvent.mouseDown(containerElement);
+    containerElement && fireEvent.mouseDown(containerElement);
     const dropdownOption1 = screen.queryByText("Swimming");
     expect(dropdownOption1).toBeInTheDocument();
   });

@@ -1,12 +1,17 @@
+import React from "react";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import { CardWrapper } from "../../../components/Card";
+
+interface IProps {
+  customClass?: string;
+}
 
 const MockCardChild = () => {
   return <div>{"card child"}</div>;
 };
 
-const MockCardWrapper = (props) => {
+const MockCardWrapper = (props: IProps) => {
   return (
     <CardWrapper
       width="50px"
