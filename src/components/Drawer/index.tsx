@@ -23,7 +23,7 @@ const Drawer = ({
   const handleOutsideClick = useCallback(
     (event: MouseEvent) => {
       if (
-        event.target instanceof HTMLDivElement &&
+        event.target instanceof HTMLElement &&
         drawerRef.current &&
         !drawerRef.current.contains(event.target)
       ) {
