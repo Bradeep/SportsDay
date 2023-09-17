@@ -1,6 +1,14 @@
+import React from "react";
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
-import Events from "../../views/EventCard";
+import Events from "../../views/EventCard/index";
+import { EventsInterface } from "../../views";
+
+interface IProps {
+  events?: Array<EventsInterface>;
+  selectedEvents?: Array<EventsInterface>;
+  selectedCategory?: string;
+}
 
 const mockButtonClick = jest.fn();
 
@@ -59,7 +67,7 @@ const selectedEvents = [
   },
 ];
 
-const MockEvents = (props) => {
+const MockEvents = (props: IProps) => {
   return (
     <Events
       onClick={mockButtonClick}
@@ -67,9 +75,7 @@ const MockEvents = (props) => {
       selectedEvents={selectedEvents}
       selectedCategory="All Categories"
       {...props}
-    >
-      label text
-    </Events>
+    />
   );
 };
 

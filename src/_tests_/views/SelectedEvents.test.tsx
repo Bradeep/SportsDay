@@ -1,6 +1,12 @@
+import React from "react";
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
 import SelectedEvents from "../../views/SelectedEvents";
+import { EventsInterface } from "views";
+
+interface IProps {
+  selectedEvents?: Array<EventsInterface>;
+}
 
 const mockButtonClick = jest.fn();
 
@@ -21,15 +27,13 @@ const selectedEvents = [
   },
 ];
 
-const MockEvents = (props) => {
+const MockEvents = (props: IProps) => {
   return (
     <SelectedEvents
       onClickRemove={mockButtonClick}
       selectedEvents={selectedEvents}
       {...props}
-    >
-      label text
-    </SelectedEvents>
+    />
   );
 };
 
@@ -51,7 +55,7 @@ describe("Selected Events card Wrapper", () => {
 
     test("onClear function", () => {
       render(<MockEvents />);
-      const el = screen.queryByTestId("selectedEvents_close-4");
+      const el = screen.getByTestId("selectedEvents_close-4");
       fireEvent.click(el);
       expect(mockButtonClick).toBeCalled();
     });
