@@ -20,7 +20,7 @@ export default function Dropdown({
 
   const handleOutsideClick = (event: MouseEvent) => {
     if (
-      event.target instanceof HTMLDivElement &&
+      event.target instanceof HTMLElement &&
       optionsSheetRef.current &&
       !optionsSheetRef.current.contains(event.target)
     ) {
