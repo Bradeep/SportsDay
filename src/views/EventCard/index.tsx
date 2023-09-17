@@ -132,7 +132,7 @@ const Events = ({
                       buttonColor="#ffc63d"
                       onClick={() =>
                         onClickButton(
-                          idx,
+                          currIndex + idx,
                           event.id,
                           isSelectedEvent,
                           overlapping
