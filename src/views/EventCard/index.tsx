@@ -32,7 +32,7 @@ interface IProps {
   ) => void;
 }
 
-const EVENTS_PER_PAGE = 5;
+const EVENTS_PER_PAGE = 10;
 
 const Events = ({
   events,

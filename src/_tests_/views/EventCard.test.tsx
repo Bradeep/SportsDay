@@ -1,8 +1,10 @@
 import React from "react";
 import "@testing-library/jest-dom";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import Events from "../../views/EventCard/index";
 import { EventsInterface } from "../../views";
+
+import { dummyData } from "_tests_/dummyData";
 
 interface IProps {
   events?: Array<EventsInterface>;
@@ -11,44 +13,6 @@ interface IProps {
 }
 
 const mockButtonClick = jest.fn();
-
-const events = [
-  {
-    id: 1,
-    event_name: "Butterfly 100M",
-    event_category: "Swimming",
-    start_time: "2022-12-17 13:00:00",
-    end_time: "2022-12-17 14:00:00",
-  },
-  {
-    id: 2,
-    event_name: "Backstroke 100M",
-    event_category: "Swimmin",
-    start_time: "2022-12-17 13:30:00",
-    end_time: "2022-12-17 14:30:00",
-  },
-  {
-    id: 3,
-    event_name: "Freestyle 400M",
-    event_category: "Swimming",
-    start_time: "2022-12-17 15:00:00",
-    end_time: "2022-12-17 16:00:00",
-  },
-  {
-    id: 4,
-    event_name: "High Jump",
-    event_category: "Athletics",
-    start_time: "2022-12-17 13:00:00",
-    end_time: "2022-12-17 14:00:00",
-  },
-  {
-    id: 5,
-    event_name: "Triple Jump",
-    event_category: "Athletics",
-    start_time: "2022-12-17 16:00:00",
-    end_time: "2022-12-17 17:00:00",
-  },
-];
 
 const selectedEvents = [
   {
@@ -71,7 +35,7 @@ const MockEvents = (props: IProps) => {
   return (
     <Events
       onClick={mockButtonClick}
-      events={events}
+      events={dummyData}
       selectedEvents={selectedEvents}
       selectedCategory="All Categories"
       {...props}
@@ -144,6 +108,74 @@ describe("Events card Wrapper", () => {
       render(<MockEvents selectedEvents={selected} />);
       let event = screen.queryAllByText("Can select only upto 3 events")[0];
       expect(event).toBeInTheDocument();
+    });
+  });
+  describe("Prev and Next button", () => {
+    test("onClick of Next Button", async () => {
+      render(<MockEvents />);
+      let event = screen.queryByText("Cricket U19");
+      expect(event).not.toBeInTheDocument();
+
+      let button = screen.getByText("NEXT >");
+      fireEvent.click(button);
+
+      await waitFor(() => {
+        const el = screen.queryByText("Cricket U19");
+        expect(el).toBeInTheDocument();
+      });
+    });
+
+    test("Next Button should be disabled on last page", async () => {
+      render(<MockEvents />);
+
+      let button = screen.getByText("NEXT >");
+      fireEvent.click(button);
+
+      await waitFor(() => {
+        const el = screen.queryByText("Cricket U19");
+        expect(el).toBeInTheDocument();
+      });
+
+      button = screen.getByText("NEXT >");
+      fireEvent.click(button);
+
+      await waitFor(() => {
+        const el = screen.queryByText("Cricket U19");
+        expect(el).toBeInTheDocument();
+      });
+    });
+
+    test("onClick of Prev Button", async () => {
+      render(<MockEvents />);
+
+      let button = screen.getByText("NEXT >");
+      fireEvent.click(button);
+
+      let event = screen.queryByText("Butterfly 100M");
+      expect(event).not.toBeInTheDocument();
+
+      button = screen.getByText("< PREV");
+      fireEvent.click(button);
+
+      await waitFor(() => {
+        const el = screen.queryByText("Butterfly 100M");
+        expect(el).toBeInTheDocument();
+      });
+    });
+
+    test("Prev Button should be disabled on first page", async () => {
+      render(<MockEvents />);
+
+      const el = screen.queryByText("Butterfly 100M");
+      expect(el).toBeInTheDocument();
+
+      let button = screen.getByText("< PREV");
+      fireEvent.click(button);
+
+      await waitFor(() => {
+        const el = screen.queryByText("Butterfly 100M");
+        expect(el).toBeInTheDocument();
+      });
     });
   });
   test("Fallback rendered when there are no data", () => {
