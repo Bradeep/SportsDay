@@ -9,14 +9,14 @@ interface State {
 }
 
 class ErrorBoundary extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = { hasError: false };
-  }
+  public state: State = {
+    hasError: false,
+  };
 
   public static getDerivedStateFromError(_: Error): State {
+    console.error("Uncaught error:");
+
     // Update state so the next render will show the fallback UI.
-    console.log("error");
     return { hasError: true };
   }
 
@@ -24,12 +24,11 @@ class ErrorBoundary extends Component<Props, State> {
     console.error("Uncaught error:", error, errorInfo);
   }
 
-  render() {
-    if (this.state.hasError) {
-      return <h1>Something went wrong</h1>;
-    }
+  public render() {
+    const { hasError } = this.state;
+    const { children } = this.props;
 
-    return this.props.children;
+    return hasError ? <h1>Something went wrong</h1> : children;
   }
 }
 

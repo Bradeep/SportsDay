@@ -6,8 +6,6 @@ import Events from "./EventCard";
 import Dropdown from "../components/Dropdown";
 import Drawer from "../components/Drawer";
 
-import ErrorBoundary from "../components/ErrorBoundary";
-
 import icon from "../assets/icons/athletics.svg";
 
 import "./styles.scss";
@@ -40,9 +38,13 @@ const SportsDay = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("data.json");
-      const resData = await res?.json();
-      setData(resData);
+      try {
+        const res = await fetch("data.json");
+        const resData = await res?.json();
+        setData(resData);
+      } catch (e) {
+        console.log("Api failure");
+      }
     };
 
     fetchData();
@@ -64,7 +66,7 @@ const SportsDay = () => {
   };
 
   return (
-    <ErrorBoundary>
+    <>
       <div className="app_container">
         <div className="app_title_bar">
           <div className="app_title">SPORTS EXTRAVAGANZA</div>
@@ -115,7 +117,7 @@ const SportsDay = () => {
           onClickRemove={onClick}
         />
       </Drawer>
-    </ErrorBoundary>
+    </>
   );
 };
 
