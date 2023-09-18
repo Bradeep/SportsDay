@@ -1,9 +1,9 @@
 import React from "react";
 
+import Fallback from "components/Fallback";
 import ImgWithFallback from "../../components/ImgWithFallback/index";
 
 import fallbackIcon from "../../assets/icons/athletics.svg";
-import runningIcon from "../../assets/images/running.svg";
 
 import { formattedDate, toStandardTime } from "../../utilities/utils";
 import { sportIcons } from "../../constants/imageMap";
@@ -67,17 +67,7 @@ const SelectedEvents = ({ selectedEvents, onClickRemove }: IProps) => {
           </div>
         </>
       ) : (
-        <div
-          className={styles.selectedEvents_fallback}
-          data-testid="selectedEvents-fallback"
-        >
-          <img
-            src={runningIcon}
-            className={styles.fallback_icon}
-            alt="fallback_icon"
-          />
-          No Events Selected
-        </div>
+        <Fallback message="No Events Selected" />
       )}
     </div>
   );

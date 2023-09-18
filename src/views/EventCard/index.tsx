@@ -3,10 +3,10 @@ import React, { useState, useEffect, useCallback } from "react";
 import { CardWrapper } from "../../components/Card/index";
 import ImgWithFallback from "../../components/ImgWithFallback/index";
 import { Button } from "../../components/Button/index";
+import Fallback from "components/Fallback";
 import Tooltip from "../../components/Tooltip/index";
 
 import img from "../../assets/images/athletics.jpg";
-import runningIcon from "../../assets/images/running.svg";
 
 import { sportImages } from "../../constants/imageMap";
 
@@ -183,19 +183,7 @@ const Events = ({
           </Button>
         </div>
       )}
-      {!areEventsAvailable && (
-        <div
-          className={styles.events_fallback}
-          data-testid="selectedEvents-fallback"
-        >
-          <img
-            src={runningIcon}
-            className={styles.fallback_icon}
-            alt="fallback_icon"
-          />
-          No Events to be displayed
-        </div>
-      )}
+      {!areEventsAvailable && <Fallback message="No Events to be displayed" />}
     </>
   );
 };

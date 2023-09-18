@@ -1,0 +1,28 @@
+@import "../../constants/_variables.scss";
+
+.fallback_wrapper {
+  @include flex-justify-center;
+  flex: 1;
+  flex-direction: column;
+  text-align: center;
+  color: $YELLOW;
+  font-size: 20px;
+  font-weight: 500;
+  animation: drop-out 2250ms;
+  height: 100%;
+  .fallback_icon {
+    height: 200px;
+    width: 150px;
+  }
+}
+
+@keyframes drop-out {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

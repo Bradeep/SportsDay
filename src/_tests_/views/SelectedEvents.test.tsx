@@ -62,7 +62,7 @@ describe("Selected Events card Wrapper", () => {
 
     test("Fallback should not be rendered", () => {
       render(<MockEvents />);
-      const el = screen.queryByTestId("selectedEvents-fallback");
+      const el = screen.queryByTestId("No Events Selected");
       expect(el).not.toBeInTheDocument();
     });
   });
@@ -75,7 +75,7 @@ describe("Selected Events card Wrapper", () => {
     });
     test("rendering of fallback", () => {
       render(<MockEvents selectedEvents={[]} />);
-      const el = screen.queryByTestId("selectedEvents-fallback");
+      const el = screen.getByText("No Events Selected");
       expect(el).toBeInTheDocument();
     });
   });

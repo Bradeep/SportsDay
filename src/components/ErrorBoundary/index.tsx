@@ -1,4 +1,5 @@
 import React, { Component, ErrorInfo, ReactNode } from "react";
+import Fallback from "components/Fallback";
 
 interface Props {
   children?: ReactNode;
@@ -28,7 +29,13 @@ class ErrorBoundary extends Component<Props, State> {
     const { hasError } = this.state;
     const { children } = this.props;
 
-    return hasError ? <h1>Something went wrong</h1> : children;
+    return hasError ? (
+      <div style={{ height: "100vh", background: "black" }}>
+        <Fallback />
+      </div>
+    ) : (
+      children
+    );
   }
 }
 
