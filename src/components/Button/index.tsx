@@ -9,7 +9,7 @@ interface ButtonProps {
   disabled?: boolean;
 }
 
-export const Button = ({
+const Button = ({
   textColor = "",
   buttonColor = "",
   customClass = "",
@@ -35,3 +35,5 @@ export const Button = ({
     </button>
   );
 };
+
+export default Button;

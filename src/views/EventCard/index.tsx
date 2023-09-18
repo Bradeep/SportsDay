@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 
-import { CardWrapper } from "../../components/Card/index";
+import CardWrapper from "../../components/Card/index";
 import ImgWithFallback from "../../components/ImgWithFallback/index";
-import { Button } from "../../components/Button/index";
+import Button from "../../components/Button/index";
 import Fallback from "components/Fallback";
 import Tooltip from "../../components/Tooltip/index";
 

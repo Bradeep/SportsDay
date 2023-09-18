@@ -9,7 +9,7 @@ interface CardProps {
   backgroundColor?: string;
 }
 
-export const CardWrapper = ({
+const CardWrapper = ({
   customClass,
   width,
   height,
@@ -34,3 +34,5 @@ export const CardWrapper = ({
     </div>
   );
 };
+
+export default CardWrapper;
