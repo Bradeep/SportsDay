@@ -10,6 +10,7 @@ import { filterSelectedCategoryEvents } from "./helper";
 import icon from "../assets/icons/athletics.svg";
 
 import "./styles.scss";
+import Loader from "components/Loader";
 
 const EVENT_CATEGORY = [
   "All Categories",
@@ -37,18 +38,22 @@ const SportsDay = () => {
     []
   );
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] =
     useState<string>("All Categories");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setIsLoading(true);
         const res = await fetch("data.json");
         const resData = await res?.json();
         setEvents(resData);
         setSelectedCategoryEvents(resData);
       } catch (e) {
         console.log("Api failure");
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -109,14 +114,18 @@ const SportsDay = () => {
             </div>
           </div>
         </div>
-        <div>
-          <Events
-            events={selectedCategoryEvents}
-            selectedEvents={selectedEvents}
-            onClick={onClick}
-            selectedCategory={selectedCategory}
-          />
-        </div>
+        {!isLoading ? (
+          <div>
+            <Events
+              events={selectedCategoryEvents}
+              selectedEvents={selectedEvents}
+              onClick={onClick}
+              selectedCategory={selectedCategory}
+            />
+          </div>
+        ) : (
+          <Loader />
+        )}
       </div>
       <Drawer
         open={isDrawerOpen}
