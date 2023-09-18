@@ -13,6 +13,7 @@
       min-width: auto;
 
       .eventCard_wrapper {
+        width: 298px;
         .eventCard_title {
           background-color: $YELLOW;
           border-radius: 4px;
@@ -20,6 +21,9 @@
           font-size: 24px;
           font-weight: 700;
           text-align: center;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
         }
         .event_descriptions {
           padding: 24px 30px;
@@ -87,6 +91,7 @@
         width: fit-content;
 
         .eventCard_wrapper {
+          width: 185px;
           .eventCard_title {
             padding: 10px 14px;
             font-size: 16px;

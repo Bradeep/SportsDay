@@ -39,12 +39,16 @@
     }
     .selectedEvents_description {
       border-left: 1px solid $BLACK;
+      width: 150px;
       padding-left: 10px;
       display: flex;
       flex-direction: column;
       font-size: 12px;
       line-height: 16px;
       .selectedEvents_name {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
         font-size: 14px;
         font-weight: 600;
         line-height: 18px;
