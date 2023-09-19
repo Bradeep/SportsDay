@@ -65,6 +65,21 @@ describe("Selected Events card Wrapper", () => {
       const el = screen.queryByTestId("No Events Selected");
       expect(el).not.toBeInTheDocument();
     });
+
+    describe("Submit button", () => {
+      test("render submit button", () => {
+        render(<MockEvents />);
+        const el = screen.getByText("SUBMIT");
+        expect(el).toBeInTheDocument();
+      });
+      test("on click of submit button", () => {
+        window.alert = jest.fn();
+        render(<MockEvents />);
+        const el = screen.getByText("SUBMIT");
+        fireEvent.click(el);
+        expect(window.alert).toHaveBeenCalledWith("Events are registered");
+      });
+    });
   });
 
   describe("if there is no data", () => {

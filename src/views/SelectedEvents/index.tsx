@@ -1,5 +1,6 @@
 import React from "react";
 
+import Button from "components/Button";
 import Fallback from "components/Fallback";
 import ImgWithFallback from "../../components/ImgWithFallback/index";
 
@@ -65,6 +66,12 @@ const SelectedEvents = ({ selectedEvents, onClickRemove }: IProps) => {
               );
             })}
           </div>
+          <Button
+            buttonColor="#ffc63d"
+            onClick={() => window.alert("Events are registered")}
+          >
+            {"SUBMIT"}
+          </Button>
         </>
       ) : (
         <Fallback message="No Events Selected" />
