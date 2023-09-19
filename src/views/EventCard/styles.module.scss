@@ -126,10 +126,34 @@
 @media #{$MediaScreenXs} {
   .eventCard_container {
     padding: 64px 32px;
+    .cardWrapper_container {
+      .cardWrapper {
+        .eventCard_wrapper {
+          .event_descriptions {
+            .select_button {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
   }
 }
 
 @media #{$MediaScreenXxs} {
+  .eventCard_container {
+    .cardWrapper_container {
+      .cardWrapper {
+        .eventCard_wrapper {
+          .event_descriptions {
+            .select_button {
+              font-size: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
   .eventsCard_footer {
     justify-content: center;
   }

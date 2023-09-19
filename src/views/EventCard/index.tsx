@@ -33,6 +33,7 @@ interface IProps {
 }
 
 const EVENTS_PER_PAGE = 10;
+const TOTAL_SELECTED_EVENTS = 3;
 
 const Events = ({
   events,
@@ -79,7 +80,8 @@ const Events = ({
           if (!areEventsAvailable) setAreEventsAvailable(true);
 
           const overlapping =
-            selectedEvents.length === 3 || isOverLapping(selectedEvents, event);
+            selectedEvents.length === TOTAL_SELECTED_EVENTS ||
+            isOverLapping(selectedEvents, event);
 
           const isSelectedEvent = selectedEvents.some(
             (el) => el.id === event.id
@@ -145,8 +147,8 @@ const Events = ({
                       {overlapping && !isSelectedEvent && (
                         <div className={styles.tooltip}>
                           <Tooltip>
-                            {selectedEvents.length === 3
-                              ? "Can select only upto 3 events"
+                            {selectedEvents.length === TOTAL_SELECTED_EVENTS
+                              ? `Can select only upto ${TOTAL_SELECTED_EVENTS} events`
                               : "Another event has been chosen on this timeslot"}
                           </Tooltip>
                         </div>
