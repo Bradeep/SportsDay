@@ -1,8 +1,8 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import Events from "../../views/EventCard/index";
-import { EventsInterface } from "../../views";
+import Events from "../../views/rentee/EventCard/index";
+import { EventsInterface } from "../../views/rentee";
 
 import { dummyData } from "_tests_/dummyData";
 
@@ -19,6 +19,9 @@ const selectedEvents = [
     id: 4,
     event_name: "High Jump",
     event_category: "Athletics",
+    "is_available": true,
+    price: 400,
+    size: 'S',
     start_time: "2022-12-17 13:00:00",
     end_time: "2022-12-17 14:00:00",
   },
@@ -26,6 +29,9 @@ const selectedEvents = [
     id: 5,
     event_name: "Triple Jump",
     event_category: "Athletics",
+    "is_available": true,
+    price: 400,
+    size: 'Xl',
     start_time: "2022-12-17 16:00:00",
     end_time: "2022-12-17 17:00:00",
   },
@@ -101,6 +107,9 @@ describe("Events card Wrapper", () => {
           id: 3,
           event_name: "Freestyle 400M",
           event_category: "Swimming",
+          "is_available": true,
+          price: 500,
+          size: 'L',
           start_time: "2022-12-17 15:00:00",
           end_time: "2022-12-17 16:00:00",
         },

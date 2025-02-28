@@ -1,4 +1,4 @@
-import { filterSelectedCategoryEvents } from "views/helper";
+import { filterSelectedCategoryEvents } from "views/rentee/helper";
 import { dummyData } from "_tests_/dummyData";
 
 describe("Helper function", () => {

@@ -1,0 +1,13 @@
+@import "../../constants/_variables.scss";
+
+.eventCard_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    overflow: auto;
+    scroll-behavior: auto;
+    background-color: $BLACK;
+    min-height: 100vh;
+}

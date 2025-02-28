@@ -2,14 +2,14 @@ import React from "react";
 
 import Button from "components/Button";
 import Fallback from "components/Fallback";
-import ImgWithFallback from "../../components/ImgWithFallback/index";
+import ImgWithFallback from "../../../components/ImgWithFallback/index";
 
-import fallbackIcon from "../../assets/icons/athletics.svg";
+import fallbackIcon from "../../../assets/icons/athletics.svg";
 
-import { formattedDate, toStandardTime } from "../../utilities/utils";
-import { sportIcons } from "../../constants/imageMap";
+import { formattedDate, toStandardTime } from "../../../utilities/utils";
+import { sportIcons } from "../../../constants/imageMap";
 
-import { EventsInterface } from "views";
+import { EventsInterface } from "views/rentee";
 
 import styles from "./styles.module.scss";
 
@@ -23,9 +23,9 @@ const SelectedEvents = ({ selectedEvents, onClickRemove }: IProps) => {
     <div className={styles.selectedEvents_container}>
       {selectedEvents.length > 0 ? (
         <>
-          <div className={styles.selectedEvents_title}>Selected Events</div>
+          <div className={styles.selectedEvents_title}>Selected Items</div>
 
-          <div>
+          <div className={styles["selectedEvents-list"]}>
             {selectedEvents.map((event, idx) => {
               return (
                 <div
@@ -68,6 +68,7 @@ const SelectedEvents = ({ selectedEvents, onClickRemove }: IProps) => {
           </div>
           <Button
             buttonColor="#ffc63d"
+            customClass={styles.submitButton}
             onClick={() => window.alert("Events are registered")}
           >
             {"SUBMIT"}

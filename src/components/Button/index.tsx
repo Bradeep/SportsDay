@@ -1,11 +1,11 @@
 import React, { PropsWithChildren } from "react";
 import styles from "./styles.module.scss";
 
-interface ButtonProps {
+interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   textColor?: string;
   buttonColor?: string;
   customClass?: string;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent) => void;
   disabled?: boolean;
 }
 
@@ -16,9 +16,10 @@ const Button = ({
   onClick,
   disabled = false,
   children,
+  ...props
 }: PropsWithChildren<ButtonProps>) => {
-  const onButtonClick = () => {
-    !disabled && onClick && onClick();
+  const onButtonClick = (event: React.MouseEvent) => {
+    !disabled && onClick && onClick(event);
   };
 
   return (
@@ -30,6 +31,7 @@ const Button = ({
         backgroundColor: buttonColor,
       }}
       onClick={onButtonClick}
+      {...props}
     >
       <div>{children}</div>
     </button>

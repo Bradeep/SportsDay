@@ -1,22 +1,22 @@
 import React, { useState, useEffect, useCallback } from "react";
 
-import CardWrapper from "../../components/Card/index";
-import ImgWithFallback from "../../components/ImgWithFallback/index";
-import Button from "../../components/Button/index";
+import CardWrapper from "../../../components/Card/index";
+import ImgWithFallback from "../../../components/ImgWithFallback/index";
+import Button from "../../../components/Button/index";
 import Fallback from "components/Fallback";
-import Tooltip from "../../components/Tooltip/index";
+import Tooltip from "../../../components/Tooltip/index";
 
-import img from "../../assets/images/athletics.jpg";
+import img from "../../../assets/images/athletics.jpg";
 
-import { sportImages } from "../../constants/imageMap";
+import { sportImages } from "../../../constants/imageMap";
 
-import {
-  toStandardTime,
-  isOverLapping,
-  formattedDate,
-} from "../../utilities/utils";
+// import {
+  // toStandardTime,
+  // isOverLapping,
+  // formattedDate,
+// } from "../../utilities/utils";
 
-import { EventsInterface } from "views";
+import { EventsInterface } from "views/rentee";
 
 import styles from "./styles.module.scss";
 
@@ -33,7 +33,7 @@ interface IProps {
 }
 
 const EVENTS_PER_PAGE = 10;
-const TOTAL_SELECTED_EVENTS = 3;
+// const TOTAL_SELECTED_EVENTS = 3;
 
 const Events = ({
   events,
@@ -80,8 +80,7 @@ const Events = ({
           if (!areEventsAvailable) setAreEventsAvailable(true);
 
           const overlapping =
-            selectedEvents.length === TOTAL_SELECTED_EVENTS ||
-            isOverLapping(selectedEvents, event);
+            !event.is_available
 
           const isSelectedEvent = selectedEvents.some(
             (el) => el.id === event.id
@@ -111,23 +110,22 @@ const Events = ({
                     className={styles.event_image}
                     height={230}
                     width={298}
+                    // src={event.img}
                     src={sportImages[event.event_category.toLowerCase()] || ""}
                     fallbackSrc={img}
                   />
                   <div className={styles.event_descriptions}>
                     <div className={styles.event_date_wrapper}>
-                      <span>Date:</span>
+                      <span>Size:</span>
                       <span className={styles.event_date}>
                         {" "}
-                        {formattedDate(event.start_time)}
+                        {event.size}
                       </span>
                     </div>
                     <div className={styles.event_time_wrapper}>
-                      <span>Time: </span>
+                      <span>Price: </span>
                       <span className={styles.event_time}>
-                        {" "}
-                        {toStandardTime(event.start_time)} -{" "}
-                        {toStandardTime(event.end_time)}
+                        {`$ ${event.price}`}
                       </span>
                     </div>
                     <Button
@@ -147,9 +145,7 @@ const Events = ({
                       {overlapping && !isSelectedEvent && (
                         <div className={styles.tooltip}>
                           <Tooltip>
-                            {selectedEvents.length === TOTAL_SELECTED_EVENTS
-                              ? `Can select only upto ${TOTAL_SELECTED_EVENTS} events`
-                              : "Another event has been chosen on this timeslot"}
+                            {'Stock not available'}
                           </Tooltip>
                         </div>
                       )}

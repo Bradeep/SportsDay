@@ -1,13 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import SportsDay from "./views";
+import { App } from "./views";
 import ErrorBoundary from "components/ErrorBoundary/index";
+
+
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
   <ErrorBoundary>
-    <SportsDay />
+    <App />
   </ErrorBoundary>
 );
 

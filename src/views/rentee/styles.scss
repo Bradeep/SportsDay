@@ -1,4 +1,4 @@
-@import "../constants/_variables.scss";
+@import "../../constants/_variables.scss";
 
 .app_container {
   background-color: $BLACK;
@@ -16,6 +16,7 @@
     .app_title {
       animation: drop-out 800ms ease-out;
       flex: 1;
+      color: #ffc63d;
     }
     .app_title_CTA {
       display: flex;

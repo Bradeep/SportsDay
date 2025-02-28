@@ -1,4 +1,4 @@
-import { EventsInterface } from "views";
+import { EventsInterface } from "views/rentee";
 
 export const filterSelectedCategoryEvents = (
   events: Array<EventsInterface>,

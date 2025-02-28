@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import SportsDay from "../../views";
+import SportsDay from "../../views/rentee";
 
 import { dummyData as mockData } from "_tests_/dummyData";
 
