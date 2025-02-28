@@ -24,7 +24,7 @@ const Rentor = () => {
 
     return (
         <div className={styles.rentor_wrapper}>
-            <form className={styles.rentor_form} ref={formRef} onSubmit={onSubmit} action="javascript:void(0)">
+            <form className={styles.rentor_form} ref={formRef} onSubmit={onSubmit} action="#">
                 <div className={styles.field_wrapper}>
                     <label className={styles.label} htmlFor="name">Name of the product</label>
                     <input className={styles.input} id="name" name="name" />
