@@ -102,8 +102,7 @@ const Events = ({
                     className={styles.event_image}
                     height={230}
                     width={298}
-                    // src={event.img}
-                    src={`http://localhost:3001${event.image}`}
+                    src={`${event.image}`}
                     fallbackSrc={img}
                   />
                   <div className={styles.event_descriptions}>

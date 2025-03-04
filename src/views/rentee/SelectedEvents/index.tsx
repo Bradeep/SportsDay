@@ -42,7 +42,7 @@ const SelectedEvents = ({ selectedEvents, onClickRemove }: IProps) => {
                     className={styles.selectedEvents_icon}
                     height={20}
                     width={20}
-                    src={`http://localhost:3001${event.image}`}
+                    src={`${event.image}`}
                     fallbackSrc={fallbackIcon as string}
                   />
 

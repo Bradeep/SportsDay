@@ -15,7 +15,8 @@ const Rentor = () => {
             formData.append("is_available", "true");
 
             try {
-                const response = await fetch("http://localhost:3001/api/events", {
+                const response = await fetch("https://rentalappserver-production.up.railway.app/api/events", {
+                    // const response = await fetch("http://localhost:3001/api/events", {
                     method: "POST",
                     body: formData
                 });

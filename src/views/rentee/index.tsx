@@ -47,7 +47,8 @@ const Rentee = () => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const res = await fetch("http://localhost:3001/api/events");
+        // const res = await fetch("http://localhost:3001/api/events");
+        const res = await fetch("https://rentalappserver-production.up.railway.app/api/events");
         const resData = await res?.json();
         setEvents(resData);
         setSelectedCategoryEvents(resData);
