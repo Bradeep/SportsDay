@@ -22,8 +22,7 @@ const selectedEvents = [
     "is_available": true,
     price: 400,
     size: 'S',
-    start_time: "2022-12-17 13:00:00",
-    end_time: "2022-12-17 14:00:00",
+    image: 'dummy_file.jpg'
   },
   {
     id: 5,
@@ -32,8 +31,7 @@ const selectedEvents = [
     "is_available": true,
     price: 400,
     size: 'Xl',
-    start_time: "2022-12-17 16:00:00",
-    end_time: "2022-12-17 17:00:00",
+    image: 'dummy_file.jpg'
   },
 ];
 
@@ -110,8 +108,7 @@ describe("Events card Wrapper", () => {
           "is_available": true,
           price: 500,
           size: 'L',
-          start_time: "2022-12-17 15:00:00",
-          end_time: "2022-12-17 16:00:00",
+          image: 'dummy_file.jpg'
         },
       ];
       render(<MockEvents selectedEvents={selected} />);

@@ -8,14 +8,6 @@ import Tooltip from "../../../components/Tooltip/index";
 
 import img from "../../../assets/images/athletics.jpg";
 
-import { sportImages } from "../../../constants/imageMap";
-
-// import {
-  // toStandardTime,
-  // isOverLapping,
-  // formattedDate,
-// } from "../../utilities/utils";
-
 import { EventsInterface } from "views/rentee";
 
 import styles from "./styles.module.scss";
@@ -111,7 +103,7 @@ const Events = ({
                     height={230}
                     width={298}
                     // src={event.img}
-                    src={sportImages[event.event_category.toLowerCase()] || ""}
+                    src={`http://localhost:3001${event.image}`}
                     fallbackSrc={img}
                   />
                   <div className={styles.event_descriptions}>
@@ -125,7 +117,7 @@ const Events = ({
                     <div className={styles.event_time_wrapper}>
                       <span>Price: </span>
                       <span className={styles.event_time}>
-                        {`$ ${event.price}`}
+                        &#8377; {`${event.price}`}
                       </span>
                     </div>
                     <Button

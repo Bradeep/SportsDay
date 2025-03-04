@@ -27,8 +27,7 @@ export interface EventsInterface {
   is_available: boolean;
   price: number;
   size: string;
-  start_time: string;
-  end_time: string;
+  image: string;
 }
 
 const Rentee = () => {
@@ -48,7 +47,7 @@ const Rentee = () => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const res = await fetch("data.json");
+        const res = await fetch("http://localhost:3001/api/events");
         const resData = await res?.json();
         setEvents(resData);
         setSelectedCategoryEvents(resData);

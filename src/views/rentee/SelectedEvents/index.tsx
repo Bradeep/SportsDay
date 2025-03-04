@@ -6,9 +6,6 @@ import ImgWithFallback from "../../../components/ImgWithFallback/index";
 
 import fallbackIcon from "../../../assets/icons/athletics.svg";
 
-import { formattedDate, toStandardTime } from "../../../utilities/utils";
-import { sportIcons } from "../../../constants/imageMap";
-
 import { EventsInterface } from "views/rentee";
 
 import styles from "./styles.module.scss";
@@ -45,7 +42,7 @@ const SelectedEvents = ({ selectedEvents, onClickRemove }: IProps) => {
                     className={styles.selectedEvents_icon}
                     height={20}
                     width={20}
-                    src={sportIcons[event.event_category.toLowerCase()] || ""}
+                    src={`http://localhost:3001${event.image}`}
                     fallbackSrc={fallbackIcon as string}
                   />
 
@@ -55,11 +52,6 @@ const SelectedEvents = ({ selectedEvents, onClickRemove }: IProps) => {
                     </div>
                     <div className={styles.selectedEvents_category}>
                       {`(${event.event_category})`}
-                    </div>
-                    <div>{formattedDate(event.start_time)}</div>
-                    <div className={styles.selectedEvents_time}>
-                      {toStandardTime(event.start_time)} -{" "}
-                      {toStandardTime(event.end_time)}
                     </div>
                   </div>
                 </div>

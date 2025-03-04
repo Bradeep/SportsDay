@@ -6,8 +6,7 @@ export const dummyData = [
     "is_available": true,
     price: 400,
     size: 'L',
-    start_time: "2022-12-17 13:00:00",
-    end_time: "2022-12-17 14:00:00",
+    image: 'dummy_file.jpg'
   },
   {
     id: 2,
@@ -16,8 +15,7 @@ export const dummyData = [
     "is_available": true,
     price: 400,
     size: 'L',
-    start_time: "2022-12-17 13:30:00",
-    end_time: "2022-12-17 14:30:00",
+    image: 'dummy_file.jpg'
   },
   {
     id: 3,
@@ -26,8 +24,7 @@ export const dummyData = [
     "is_available": true,
     price: 400,
     size: 'L',
-    start_time: "2022-12-17 15:00:00",
-    end_time: "2022-12-17 16:00:00",
+    image: 'dummy_file.jpg'
   },
   {
     id: 4,
@@ -36,8 +33,7 @@ export const dummyData = [
     "is_available": true,
     price: 400,
     size: 'L',
-    start_time: "2022-12-17 13:00:00",
-    end_time: "2022-12-17 14:00:00",
+    image: 'dummy_file.jpg'
   },
   {
     id: 5,
@@ -46,8 +42,7 @@ export const dummyData = [
     "is_available": true,
     price: 400,
     size: 'L',
-    start_time: "2022-12-17 16:00:00",
-    end_time: "2022-12-17 17:00:00",
+    image: 'dummy_file.jpg'
   },
   {
     id: 6,
@@ -56,8 +51,7 @@ export const dummyData = [
     "is_available": true,
     price: 400,
     size: 'L',
-    start_time: "2022-12-17 17:00:00",
-    end_time: "2022-12-17 18:00:00",
+    image: 'dummy_file.jpg'
   },
   {
     id: 7,
@@ -66,8 +60,7 @@ export const dummyData = [
     "is_available": true,
     price: 400,
     size: 'L',
-    start_time: "2022-12-17 17:00:00",
-    end_time: "2022-12-17 18:00:00",
+    image: 'dummy_file.jpg'
   },
   {
     id: 8,
@@ -76,8 +69,7 @@ export const dummyData = [
     "is_available": true,
     price: 400,
     size: 'L',
-    start_time: "2022-12-17 18:00:00",
-    end_time: "2022-12-17 19:00:00",
+    image: 'dummy_file.jpg'
   },
   {
     id: 9,
@@ -86,8 +78,7 @@ export const dummyData = [
     "is_available": true,
     price: 400,
     size: 'L',
-    start_time: "2022-12-17 19:00:00",
-    end_time: "2022-12-17 20:00:00",
+    image: 'dummy_file.jpg'
   },
   {
     id: 10,
@@ -96,8 +87,7 @@ export const dummyData = [
     price: 400,
     "is_available": true,
     size: 'L',
-    start_time: "2022-12-17 20:00:00",
-    end_time: "2022-12-17 22:00:00",
+    image: 'dummy_file.jpg'
   },
   {
     id: 11,
@@ -106,7 +96,6 @@ export const dummyData = [
     "is_available": true,
     price: 400,
     size: 'L',
-    start_time: "2022-12-18 08:00:00",
-    end_time: "2022-12-18 18:00:00",
+    image: 'dummy_file.jpg'
   },
 ];
