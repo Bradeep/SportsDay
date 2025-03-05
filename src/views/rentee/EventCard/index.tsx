@@ -75,7 +75,7 @@ const Events = ({
             !event.is_available
 
           const isSelectedEvent = selectedEvents.some(
-            (el) => el.id === event.id
+            (el) => el._id === event._id
           );
 
           return (
@@ -84,7 +84,7 @@ const Events = ({
                 doAnimation ? styles.animate : ""
               }`}
               onAnimationEnd={() => setDoAnimation(false)}
-              key={`events_${event.id}`}
+              key={`events_${event._id}`}
             >
               <CardWrapper
                 backgroundColor={"white"}
@@ -93,7 +93,7 @@ const Events = ({
               >
                 <div
                   className={styles.eventCard_wrapper}
-                  data-testid={`events_${event.id}`}
+                  data-testid={`events_${event._id}`}
                 >
                   <div className={styles.eventCard_title}>
                     {event.event_name}
@@ -124,7 +124,7 @@ const Events = ({
                       onClick={() =>
                         onClickButton(
                           currIndex + idx,
-                          event.id,
+                          event._id,
                           isSelectedEvent,
                           overlapping
                         )

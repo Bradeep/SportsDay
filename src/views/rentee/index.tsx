@@ -21,7 +21,7 @@ const EVENT_CATEGORY = [
 ];
 
 export interface EventsInterface {
-  id: number;
+  _id: number;
   event_name: string;
   event_category: string;
   is_available: boolean;
@@ -77,7 +77,7 @@ const Rentee = () => {
       });
     } else {
       setSelectedEvents((prev) => {
-        const selected = prev.filter((el: EventsInterface) => el.id !== id);
+        const selected = prev.filter((el: EventsInterface) => el._id !== id);
         return selected;
       });
     }

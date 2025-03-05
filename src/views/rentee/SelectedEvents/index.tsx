@@ -27,13 +27,13 @@ const SelectedEvents = ({ selectedEvents, onClickRemove }: IProps) => {
               return (
                 <div
                   className={styles.selectedEvents_cardWrapper}
-                  key={`selectedEvents-${event.id}`}
-                  data-testid={`selectedEvents-${event.id}`}
+                  key={`selectedEvents-${event._id}`}
+                  data-testid={`selectedEvents-${event._id}`}
                 >
                   <div
                     className={styles.selectedEvents_remove}
-                    onClick={() => onClickRemove(idx, event.id, true)}
-                    data-testid={`selectedEvents_close-${event.id}`}
+                    onClick={() => onClickRemove(idx, event._id, true)}
+                    data-testid={`selectedEvents_close-${event._id}`}
                   >
                     X
                   </div>

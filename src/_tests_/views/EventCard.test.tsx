@@ -16,7 +16,7 @@ const mockButtonClick = jest.fn();
 
 const selectedEvents = [
   {
-    id: 4,
+    _id: 4,
     event_name: "High Jump",
     event_category: "Athletics",
     "is_available": true,
@@ -25,7 +25,7 @@ const selectedEvents = [
     image: 'dummy_file.jpg'
   },
   {
-    id: 5,
+    _id: 5,
     event_name: "Triple Jump",
     event_category: "Athletics",
     "is_available": true,
@@ -102,7 +102,7 @@ describe("Events card Wrapper", () => {
       const selected = [
         ...selectedEvents,
         {
-          id: 3,
+          _id: 3,
           event_name: "Freestyle 400M",
           event_category: "Swimming",
           "is_available": true,
